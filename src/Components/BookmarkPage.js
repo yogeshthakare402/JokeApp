@@ -8,7 +8,14 @@ function BookmarkPage({setShowJoke, setShowBookmark }) {
 
     useEffect(()=>{
         let list = JSON.parse(localStorage.getItem("jokesBookmark"))
-        setBookMark(list)
+        if(list){
+            setBookMark(list)
+        }else{
+            localStorage.setItem("jokesBookmark", JSON.stringify([]));
+            list = JSON.parse(localStorage.getItem("jokesBookmark"));
+            setBookMark(list);
+        }
+        
     },[]);
 
     const deleteBookmark = (id)=>{
