@@ -26,10 +26,20 @@ function Home() {
         // localStorage.setItem("jokeList",JSON.stringify([]))
         //nowadd kv to array
         let jokeList = JSON.parse(localStorage.getItem("jokeList"));
-        jokeList.push([rate, joke])
-        localStorage.setItem("jokeList", JSON.stringify(jokeList));
-        let list = JSON.parse(localStorage.getItem("jokeList"))
-        setJokesList(list)
+        if(jokeList){
+            jokeList.push([rate, joke])
+            localStorage.setItem("jokeList", JSON.stringify(jokeList));
+            let list = JSON.parse(localStorage.getItem("jokeList"))
+            setJokesList(list)
+        }else{
+            localStorage.setItem("jokeList",JSON.stringify([]))
+            jokeList = JSON.parse(localStorage.getItem("jokeList"));
+            jokeList.push([rate, joke])
+            localStorage.setItem("jokeList", JSON.stringify(jokeList));
+            let list = JSON.parse(localStorage.getItem("jokeList"))
+            setJokesList(list)
+        }
+        
         console.log(jokesList)
         // localStorage.removeItem("joke")
     };
